@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -29,12 +29,17 @@ export default function ClientLayout({ children, title }: ClientLayoutProps) {
   const { clientUser, loading, signOut } = useClientAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const mainContentRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!loading && !clientUser) {
       navigate("/client-portal/login", { replace: true });
     }
   }, [clientUser, loading, navigate]);
+
+  useEffect(() => {
+    mainContentRef.current?.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname, location.search]);
 
   const pageTitle =
     title ??
@@ -128,7 +133,9 @@ export default function ClientLayout({ children, title }: ClientLayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-6">{children}</main>
+        <main ref={mainContentRef} className="flex-1 overflow-y-auto bg-gray-50 p-6">
+          {children}
+        </main>
       </div>
     </div>
   );

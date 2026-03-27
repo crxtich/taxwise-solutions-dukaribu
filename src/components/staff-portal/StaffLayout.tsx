@@ -46,6 +46,7 @@ export default function StaffLayout({ children, title }: StaffLayoutProps) {
   const queryClient = useQueryClient();
   const [notifOpen, setNotifOpen] = useState(false);
   const notifRef = useRef<HTMLDivElement>(null);
+  const mainContentRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!loading && !staffUser) {
@@ -97,6 +98,10 @@ export default function StaffLayout({ children, title }: StaffLayoutProps) {
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [notifOpen]);
+
+  useEffect(() => {
+    mainContentRef.current?.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname, location.search]);
 
   const pageTitle =
     title ??
@@ -244,7 +249,9 @@ export default function StaffLayout({ children, title }: StaffLayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-6">{children}</main>
+        <main ref={mainContentRef} className="flex-1 overflow-y-auto bg-gray-50 p-6">
+          {children}
+        </main>
       </div>
     </div>
   );
