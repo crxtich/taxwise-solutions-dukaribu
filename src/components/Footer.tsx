@@ -13,7 +13,9 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-1">
-            <img src={logo} alt={s.company_name || "Taxwise Solutions"} className="h-14 w-auto mb-4 brightness-0 invert" />
+            <div className="inline-block bg-white rounded-lg px-3 py-2 mb-4">
+              <img src={logo} alt={s.company_name || "Taxwise Solutions"} className="h-10 w-auto" />
+            </div>
             <p className="text-gold font-display text-lg">"{s.tagline || "Compliance. Clarity. Confidence."}"</p>
           </div>
 
