@@ -9,6 +9,7 @@ import {
   Bell,
   LogOut,
   ChevronRight,
+  ExternalLink,
 } from "lucide-react";
 import { useStaffAuth } from "@/contexts/StaffAuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -156,6 +157,15 @@ export default function StaffLayout({ children, title }: StaffLayoutProps) {
               {staffUser.role}
             </span>
           </div>
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+          >
+            <ExternalLink className="w-4 h-4" />
+            View Website
+          </a>
           <button
             onClick={signOut}
             className="flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
