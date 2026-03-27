@@ -16,6 +16,7 @@ interface ClientAuthContextValue {
   clientUser: ClientUser | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: unknown }>;
+  signInWithGoogle: () => Promise<{ error: unknown }>;
   signOut: () => Promise<void>;
 }
 
@@ -72,7 +73,25 @@ export function ClientAuthProvider({ children }: { children: React.ReactNode }) 
       }
 
       if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
-        const client = await fetchClientRow(session.user.id);
+        let client = await fetchClientRow(session.user.id);
+
+        // Auto-create client record for first-time Google sign-ins
+        if (!client && session.user.app_metadata?.provider === "google") {
+          const { data: newClient } = await supabase
+            .from("clients")
+            .insert({
+              auth_user_id: session.user.id,
+              full_name: session.user.user_metadata?.full_name ?? session.user.email?.split("@")[0] ?? "Client",
+              email: session.user.email ?? "",
+              business_name: null,
+              phone: null,
+              google_drive_connected: false,
+            })
+            .select("id, auth_user_id, full_name, business_name, email, phone, google_drive_connected, google_drive_folder_id")
+            .single();
+          client = newClient as ClientUser | null;
+        }
+
         setClientUser(client);
         setLoading(false);
       }
@@ -110,6 +129,17 @@ export function ClientAuthProvider({ children }: { children: React.ReactNode }) 
     return { error: null };
   }
 
+  async function signInWithGoogle(): Promise<{ error: unknown }> {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/client-portal/dashboard`,
+        queryParams: { access_type: "offline", prompt: "consent" },
+      },
+    });
+    return { error: error ?? null };
+  }
+
   async function signOut(): Promise<void> {
     setLoading(true);
     await supabase.auth.signOut();
@@ -118,7 +148,7 @@ export function ClientAuthProvider({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <ClientAuthContext.Provider value={{ clientUser, loading, signIn, signOut }}>
+    <ClientAuthContext.Provider value={{ clientUser, loading, signIn, signInWithGoogle, signOut }}>
       {children}
     </ClientAuthContext.Provider>
   );
