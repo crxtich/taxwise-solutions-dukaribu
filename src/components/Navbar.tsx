@@ -38,12 +38,23 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-2">
           <a href={`tel:${primaryPhone.replace(/\s/g, "")}`} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
             <Phone className="h-4 w-4" /> {primaryPhone}
           </a>
-          <Link to="/compliance-check" className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity">
-            Free Compliance Check
+          <Link
+            to="/client-portal/login"
+            className="px-3 py-2 rounded-md text-sm font-semibold transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#C9A84C", color: "#0f1f3d" }}
+          >
+            Client Portal
+          </Link>
+          <Link
+            to="/staff-portal/login"
+            className="px-3 py-2 rounded-md text-sm font-semibold transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#0f1f3d", color: "#ffffff" }}
+          >
+            Staff Portal
           </Link>
         </div>
 
@@ -62,10 +73,24 @@ const Navbar = () => {
               {l.label}
             </Link>
           ))}
-          <Link to="/compliance-check" onClick={() => setOpen(false)}
-            className="block mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium text-center">
-            Free Compliance Check
-          </Link>
+          <div className="mt-3 flex flex-col gap-2">
+            <Link
+              to="/client-portal/login"
+              onClick={() => setOpen(false)}
+              className="block px-4 py-2 rounded-md text-sm font-semibold text-center"
+              style={{ backgroundColor: "#C9A84C", color: "#0f1f3d" }}
+            >
+              Client Portal
+            </Link>
+            <Link
+              to="/staff-portal/login"
+              onClick={() => setOpen(false)}
+              className="block px-4 py-2 rounded-md text-sm font-semibold text-center"
+              style={{ backgroundColor: "#0f1f3d", color: "#ffffff" }}
+            >
+              Staff Portal
+            </Link>
+          </div>
         </div>
       )}
     </nav>
