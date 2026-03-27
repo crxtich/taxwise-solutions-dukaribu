@@ -26,6 +26,7 @@ const Footer = () => {
                 { to: "/", label: "Home" },
                 { to: "/about", label: "About Us" },
                 { to: "/services", label: "Services" },
+                { to: "/clients", label: "Clients" },
                 { to: "/compliance-check", label: "Compliance Check" },
                 { to: "/training", label: "Training" },
                 { to: "/contact", label: "Contact" },

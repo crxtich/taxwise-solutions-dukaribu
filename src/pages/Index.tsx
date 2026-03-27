@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Users, Award, Calendar } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import ClientShowcase from "@/components/ClientShowcase";
 import { useSiteSettings, useStats, useServices, useOffices } from "@/hooks/useSiteData";
 import { getIcon } from "@/lib/iconMap";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -136,6 +137,13 @@ const Index = () => {
               View All Services
             </Link>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Client showcase */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <ClientShowcase />
         </div>
       </section>
 
