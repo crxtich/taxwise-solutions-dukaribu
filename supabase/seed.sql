@@ -13,7 +13,7 @@ INSERT INTO public.site_settings (key, value) VALUES
   ('hero_cta_primary',     'Get a Free Compliance Check'),
   ('hero_cta_secondary',   'Our Services'),
   ('tagline',              'Compliance. Clarity. Confidence.'),
-  ('po_box',               'P.O. Box 87788, 80100 Mombasa G.P.O.'),
+  ('po_box',               'P.O. Box 87788, 80100 - Mombasa G.P.O.'),
   ('pin_code',             '2019'),
   ('about_section_title',  'Who We Are'),
   ('about_description',    'Taxwise Solutions is a registered consultancy firm providing professional bookkeeping, audit, tax advisory, and statutory compliance services to businesses across the Kenyan coast. Founded in Mombasa, we serve SMEs, NGOs, and corporates across Mombasa and Kwale counties.'),
@@ -33,8 +33,8 @@ INSERT INTO public.stats (sort_order, value, label) VALUES
 -- ─── OFFICES ─────────────────────────────────────────────────
 DELETE FROM public.offices;
 INSERT INTO public.offices (sort_order, name, city, address, po_box, phone, email) VALUES
-  (1, 'Mombasa Office',    'Mombasa', '9/2 NSSF Building, Nkrumah Road, Mombasa', 'P.O. Box 87788, 80100 Mombasa G.P.O.', '0720 614530', 'info@taxwisesolutions.co.ke'),
-  (2, 'Kwale/Diani Office','Kwale',   'Diani, Kwale County',                        'P.O. Box 87788, 80100 Mombasa G.P.O.', '0799 866441', 'info@taxwisesolutions.co.ke');
+  (1, 'Mombasa Office',    'Mombasa', '9/2 NSSF Building, Nkrumah Road, Mombasa', 'P.O. Box 87788, 80100 - Mombasa G.P.O.', '0720 614530', 'info@taxwisesolutions.co.ke'),
+  (2, 'Kwale/Diani Office','Kwale',   'Diani, Kwale County',                        'P.O. Box 87788, 80100 - Mombasa G.P.O.', '0799 866441', 'info@taxwisesolutions.co.ke');
 
 -- ─── SERVICES ────────────────────────────────────────────────
 DELETE FROM public.services;
