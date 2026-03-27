@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useSiteSettings, useOffices } from "@/hooks/useSiteData";
+import logo from "@/assets/logo.jpeg";
 
 const Footer = () => {
   const { data: settings } = useSiteSettings();
@@ -12,8 +13,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-1">
-            <h3 className="text-xl font-bold mb-2">{s.company_name || "Taxwise Solutions"}</h3>
-            <p className="text-sm text-primary-foreground/60 italic mb-4">{s.company_subtitle || "Certified Public Accountants"}</p>
+            <img src={logo} alt={s.company_name || "Taxwise Solutions"} className="h-14 w-auto mb-4 brightness-0 invert" />
             <p className="text-gold font-display text-lg">"{s.tagline || "Compliance. Clarity. Confidence."}"</p>
           </div>
 
@@ -48,7 +48,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-foreground/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-primary-foreground/40">
-          <p>© {new Date().getFullYear()} {s.company_name || "Taxwise Solutions"}. Reg No: {s.registration_number || ""}. {s.po_box || ""}</p>
+          <p>© {new Date().getFullYear()} {s.company_name || "Taxwise Solutions"}. {s.po_box || ""}</p>
           <p className="mt-2 md:mt-0">All rights reserved.</p>
         </div>
       </div>

@@ -9,7 +9,7 @@ const About = () => {
   const s = settings || {};
 
   const highlights = [
-    { icon: Award, title: "Registered Firm", desc: `${s.registration_number || "BN-DBC6936"}, fully registered with the Registrar of Companies` },
+    { icon: Award, title: "Registered Firm", desc: "Fully registered with the Registrar of Companies" },
     { icon: Calendar, title: `Est. ${s.year_established || "2019"}`, desc: `Over ${new Date().getFullYear() - Number(s.year_established || 2019)} years of trusted financial services` },
     { icon: Users, title: "Expert Team", desc: "Certified public accountants and tax specialists" },
     { icon: Target, title: "Client-Centric", desc: "Tailored solutions for SMEs, NGOs, and corporates" },
